@@ -1,0 +1,37 @@
+seed: 42
+device: "cuda"   # "cpu" if no GPU
+
+data:
+  data_dir: "./KuaiRec/data"      # point to your path
+  use_small_matrix: true          # true->small_matrix.csv; false->big_matrix.csv
+  history_len: 50                 # recent N by time
+  min_watch_ratio: 0.1            # filter super-short interactions
+  train_days: [20200701, 20200728]  # date window for making sequences (rolling split)
+  eval_days:  [20200729, 20200731]
+  use_example_age: true
+
+candidate:
+  embed_dim: 64
+  tower_widths: [256, 128]
+  neg_k: 3000
+  batch_size: 1024
+  lr: 1.5e-3
+  epochs: 3
+  weight_decay: 1e-5
+  save_dir: "runs/candid"
+
+ranking:
+  cont_feats: ["play_ratio_hist_mean", "play_ratio_hist_std"]
+  use_poly_feats: true
+  tower_widths: [256, 128]
+  batch_size: 2048
+  lr: 1e-3
+  epochs: 2
+  save_dir: "runs/rank"
+
+ann:
+  faiss_index: "runs/candid/items.faiss"
+  item_vecs:   "runs/candid/item_emb.pt"
+
+logging:
+  log_level: "INFO"

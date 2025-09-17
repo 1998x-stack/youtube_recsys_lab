@@ -1,0 +1,22 @@
+seed: 42
+device: "cuda"    # or "cpu"
+
+data:
+  source: "kuairand"         # "kuairec" or "kuairand"
+  data_dir: "./KuaiRand"     # your KuaiRand root
+  file: "log_random_1k.csv"  # e.g., log_random_27k.csv / 1k.csv / pure.csv
+  # 仅用于 KuaiRec 的项在此忽略
+
+ranking:
+  loss: "weighted_bce"       # "weighted_bce" | "bpr"
+  use_is_rand_eval_only: true
+  cont_feats: ["play_ratio_hist_mean", "play_ratio_hist_std", "duration_ms"]
+  use_poly_feats: true
+  tower_widths: [256, 128]
+  batch_size: 2048
+  lr: 1e-3
+  epochs: 2
+  save_dir: "runs/rank_kuairand"
+
+logging:
+  log_level: "INFO"

@@ -12,5 +12,5 @@
 - Security & regression review: No secrets, workflows, deployment, permissions, production data or new dependencies changed. Potential floating-point overflow remains possible if supplied scores themselves exceed finite representable ranges; ordinary finite margins supported.
 - Risk & rollback: Loss values change for extremely negative margins by design; close Draft PR or revert feature branch commits to restore old behavior. Existing function signature retained.
 - Follow-up: Test candidate metrics for unintended mutation of caller-owned embeddings, including read-only arrays, before proposing another PR.
-- Commit: pending
-- PR: pending
+- Commit: 90d220cc60e340a583a65af298ef791a91fc3b61 (initial history commit; subsequent metadata-only update changes branch HEAD)
+- PR: https://github.com/1998x-stack/youtube_recsys_lab/pull/1
